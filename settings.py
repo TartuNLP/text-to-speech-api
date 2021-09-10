@@ -13,7 +13,7 @@ with open(CONFIG_FILE, 'r', encoding='utf-8') as f:
     _config = yaml.load(f, Loader=SafeLoader)
 
 SERVICE_NAME = _config['service']
-ROUTE = _config['routing_key']
+V1_ROUTE = _config['v1']['routing_key']
 
 MQ_PARAMETERS = ConnectionParameters(
     host=environ.get('MQ_HOST', 'localhost'),

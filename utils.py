@@ -2,9 +2,15 @@ from webargs import fields
 from webargs.flaskparser import FlaskParser
 from nauron import Response
 
-BODY = {
+BODY_V1 = {
     "text": fields.Str(required=True),
     "speaker_id": fields.Int()
+}
+
+BODY_V2 = {
+    "text": fields.Str(required=True),
+    "speaker": fields.Str(required=True),
+    "speed": fields.Float(missing=1, validate=lambda x: 0.5 <= x <= 2)
 }
 
 parser = FlaskParser()

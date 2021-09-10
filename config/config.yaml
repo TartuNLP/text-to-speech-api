@@ -1,2 +1,3 @@
 service: tts
-routing_key: deepvoice
+v1:
+  routing_key: deepvoice

@@ -8,7 +8,7 @@ Speech synthesis can also be tested in our [web demo](https://www.neurokone.ee/)
 
 ## API usage
 
-To use the API, use the following POST request format.
+To use the API, use the following POST request format (for Deep Voice 3 models):
 
 POST `/text-to-speech/v1`
 
@@ -16,13 +16,30 @@ BODY (JSON):
 
 ```
 {
-    "text": "Tere."
+    "text": "Tere.",
     "speaker_id": 0
 }
 ```
 
 Upon such request, the server will return a binary stream of the synthesized audio in .wav format. The `speaker_id`
 parameter is optional and by default, the first speaker is selected.
+
+For transformerTTS models, use the following format: 
+
+POST `/text-to-speech/v2`
+
+BODY (JSON):
+
+```
+{
+    "text": "Tere.",
+    "speaker": mari,
+    "speed": 1
+}
+```
+
+The `speaker` parameter is required and should contain the speaker's name. The `speed` parameter is optional, 
+and it is a multiplier between `0.5` and `2` compared to normal speed `1`.
 
 ## Setup
 
@@ -62,9 +79,19 @@ services:
     depends_on:
       - rabbitmq
   tts_worker_deepvoice:
-    image: ghcr.io/tartunlp/text-to-speech-worker:latest
+    image: ghcr.io/tartunlp/text-to-speech-worker:1-deepvoice
     environment:
-      - MODEL_NAME=deepvoice
+      - MQ_HOST=rabbitmq
+      - MQ_PORT=5672
+      - MQ_USERNAME=${RABBITMQ_USER}
+      - MQ_PASSWORD=${RABBITMQ_PASS}
+    volumes:
+      - ./models:/app/models
+    depends_on:
+      - rabbitmq
+  tts_worker_mari:
+    image: ghcr.io/tartunlp/text-to-speech-worker:2-transformer-tts
+      - MODEL_NAME=mari
       - MQ_HOST=rabbitmq
       - MQ_PORT=5672
       - MQ_USERNAME=${RABBITMQ_USER}
