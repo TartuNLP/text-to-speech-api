@@ -62,7 +62,7 @@ services:
     depends_on:
       - rabbitmq
   tts_worker_deepvoice:
-    image: ghcr.io/tartunlp/text-to-speech-worker:1
+    image: ghcr.io/tartunlp/text-to-speech-worker:latest
     environment:
       - MQ_HOST=rabbitmq
       - MQ_PORT=5672
