@@ -79,7 +79,7 @@ services:
     depends_on:
       - rabbitmq
   tts_worker_deepvoice:
-    image: ghcr.io/tartunlp/text-to-speech-worker:1-deepvoice
+    image: ghcr.io/tartunlp/text-to-speech-worker:1
     environment:
       - MQ_HOST=rabbitmq
       - MQ_PORT=5672
@@ -90,7 +90,7 @@ services:
     depends_on:
       - rabbitmq
   tts_worker_mari:
-    image: ghcr.io/tartunlp/text-to-speech-worker:2-transformer-tts
+    image: ghcr.io/tartunlp/text-to-speech-worker:2
       - MODEL_NAME=mari
       - MQ_HOST=rabbitmq
       - MQ_PORT=5672
