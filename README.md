@@ -8,23 +8,7 @@ Speech synthesis can also be tested in our [web demo](https://www.neurokone.ee/)
 
 ## API usage
 
-To use the API, use the following POST request format (for Deep Voice 3 models):
-
-POST `/text-to-speech/v1`
-
-BODY (JSON):
-
-```
-{
-    "text": "Tere.",
-    "speaker_id": 0
-}
-```
-
-Upon such request, the server will return a binary stream of the synthesized audio in .wav format. The `speaker_id`
-parameter is optional and by default, the first speaker is selected.
-
-For transformerTTS models, use the following format: 
+To use the API, use the following POST request format:
 
 POST `/text-to-speech/v2`
 
@@ -55,7 +39,7 @@ the variable name is capitalized and the prefix `GUNICORN_` is added. For exampl
 as follows:
 
 The RabbitMQ connection parameters are set with environment variables, exchange and queue names are dependent on the 
-`service` and `routing_key` values in `config.yaml`. The setup can be tested with the following sample
+`service` value in `config.yaml` and the speaker name. The setup can be tested with the following sample
 `docker-compose.yml` configuration:
 
 ```
@@ -76,17 +60,6 @@ services:
       - GUNICORN_WORKERS=8
     ports:
       - '5000:5000'
-    depends_on:
-      - rabbitmq
-  tts_worker_deepvoice:
-    image: ghcr.io/tartunlp/text-to-speech-worker:1-deepvoice
-    environment:
-      - MQ_HOST=rabbitmq
-      - MQ_PORT=5672
-      - MQ_USERNAME=${RABBITMQ_USER}
-      - MQ_PASSWORD=${RABBITMQ_PASS}
-    volumes:
-      - ./models:/app/models
     depends_on:
       - rabbitmq
   tts_worker_mari:
