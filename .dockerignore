@@ -3,3 +3,4 @@ config/*.env
 .git/
 .gitignore
 .github
+*.iml

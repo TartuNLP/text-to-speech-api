@@ -1,8 +1,4 @@
 /.idea/
-config.json
-server.wsgi
-*.pth
 __pycache__/
 config/.env
-TransformerTTS/
-tts_preprocess_et/
+*.iml
