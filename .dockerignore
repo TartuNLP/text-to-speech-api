@@ -1,0 +1,5 @@
+config/*.env
+.idea/
+.git/
+.gitignore
+.github
