@@ -13,7 +13,6 @@ CORS(app)
 app.add_service(name=settings.SERVICE_NAME, remote=True)
 
 
-@app.post('/api/v1.0/synthesize')
 @app.post('/text-to-speech/v1')
 @parser.use_args(BODY, location="json")
 def synthesize(body):
