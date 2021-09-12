@@ -91,7 +91,7 @@ services:
       - rabbitmq
   tts_worker_mari:
     image: ghcr.io/tartunlp/text-to-speech-worker:2
-      - MODEL_NAME=mari
+      - WORKER_NAME=mari
       - MQ_HOST=rabbitmq
       - MQ_PORT=5672
       - MQ_USERNAME=${RABBITMQ_USER}
