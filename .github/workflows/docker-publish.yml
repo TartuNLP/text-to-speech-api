@@ -24,6 +24,13 @@ jobs:
         with:
           submodules: recursive
 
+      # Lowercase image name, as mixed case is not allowed while caching
+      - name: lowercase IMAGE_NAME
+        run: |
+          echo "IMAGE_NAME_LOWER=${IMAGE_NAME,,}" >>${GITHUB_ENV}
+        env:
+          IMAGE_NAME: '${{ env.IMAGE_NAME }}'
+
       # Login against a Docker registry except on PR
       # https://github.com/docker/login-action
       - name: Log into registry ${{ env.REGISTRY }}
@@ -46,7 +53,7 @@ jobs:
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_LOWER }}
 
       - name: Set up Docker Buildx
         id: buildx
@@ -63,5 +70,5 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+          cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME_LOWER }}:latest
           cache-to: type=inline
