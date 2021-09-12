@@ -1,7 +1,7 @@
 # Text-to-Speech API
 
 A simple Flask API for multi-speaker neural text-to-speech synthesis to be used together with
-[text-to-speech workers](https://github.com/TartuNLP/text-to-speech).
+[text-to-speech workers](https://github.com/TartuNLP/text-to-speech-worker).
 
 The project is developed by the [NLP research group](https://tartunlp.ai) at the [Universty of Tartu](https://ut.ee).
 Speech synthesis can also be tested in our [web demo](https://www.neurokone.ee/).
@@ -29,7 +29,7 @@ and it is a multiplier between `0.5` and `2` compared to normal speed `1`.
 
 The API can be deployed using the docker image published alongside the repository. Each image version correlates to 
 a specific release. The API is designed to work together with our 
-[text-to-speech worker](https://github.com/TartuNLP/text-to-speech) worker containers and RabbitMQ.
+[text-to-speech worker](https://github.com/TartuNLP/text-to-speech-worker) worker containers and RabbitMQ.
 
 The service is available on port `5000`. Logs are stored in `/app/logs/`. Logging configuration is loaded from 
 `/app/config/logging.ini` and service configuration from `/app/config/config.yaml` files.
