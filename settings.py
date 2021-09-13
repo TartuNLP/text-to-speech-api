@@ -7,6 +7,8 @@ from dotenv import load_dotenv
 load_dotenv("config/.env")
 load_dotenv("config/sample.env")
 
+SECRET_KEY = environ.get("FLASK_SECRET_KEY", None)
+
 CONFIG_FILE = 'config/config.yaml'
 
 with open(CONFIG_FILE, 'r', encoding='utf-8') as f:
