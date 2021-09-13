@@ -9,11 +9,15 @@ RUN apk update \
     git
 
 WORKDIR /app
+RUN adduser -D app; chown -R app:app /app
 
-COPY requirements/requirements.txt .
-RUN pip install -r requirements.txt && rm requirements.txt
+USER app
+ENV PATH="/home/app/.local/bin:${PATH}"
 
-COPY . .
+COPY --chown=app:app requirements/requirements.txt .
+RUN pip install --user -r requirements.txt && rm requirements.txt
+
+COPY --chown=app:app . .
 
 EXPOSE 5000
 
