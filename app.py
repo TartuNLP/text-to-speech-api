@@ -8,6 +8,7 @@ from utils import parser, BODY_V2
 logger = logging.getLogger("gunicorn.error")
 
 app = Nauron(__name__, timeout=settings.MESSAGE_TIMEOUT, mq_parameters=settings.MQ_PARAMETERS)
+app.secret_key = settings.SECRET_KEY
 CORS(app)
 
 app.add_service(name=settings.SERVICE_NAME, remote=True)
