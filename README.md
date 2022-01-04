@@ -17,7 +17,7 @@ BODY (JSON):
 ```
 {
     "text": "Tere.",
-    "speaker": mari,
+    "speaker": "mari",
     "speed": 1
 }
 ```
@@ -64,6 +64,7 @@ services:
       - rabbitmq
   tts_worker_mari:
     image: ghcr.io/tartunlp/text-to-speech-worker:latest
+    environment:
       - WORKER_NAME=mari
       - MQ_HOST=rabbitmq
       - MQ_PORT=5672
