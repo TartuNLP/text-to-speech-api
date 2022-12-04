@@ -1,1 +1,23 @@
-service: tts
+speakers:
+  albert:
+    languages: [est]
+  indrek:
+    languages: [est]
+  kalev:
+    languages: [est]
+  kylli:
+    languages: [est]
+  liivika:
+    languages: [est]
+  mari:
+    languages: [est]
+  meelis:
+    languages: [est]
+  peeter:
+    languages: [est]
+  tambet:
+    languages: [est]
+  vesta:
+    languages: [est]
+alt_names:
+  külli: kylli
