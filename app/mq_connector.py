@@ -54,12 +54,8 @@ class MQConnector:
                 LOGGER.info(f"Received erronous response for request: {{"
                             f"id: {message.correlation_id}, "
                             f"code: {body['status_code']}}}")
-                self.futures.pop(message.correlation_id, None)
-                await message.ack()
-                raise HTTPException(body['status_code'], detail=body['status'])
-            else:
-                future = self.futures.pop(message.correlation_id)
-                future.set_result(body['content'])
+            future = self.futures.pop(message.correlation_id, None)
+            future.set_result(body)
 
         else:
             LOGGER.warning(f"Response received after message timeout: {{id: {message.correlation_id}}}")
@@ -105,7 +101,13 @@ class MQConnector:
 
             raise HTTPException(408)
 
-        return worker_response, correlation_id
+        if worker_response['status_code'] != 200:
+            LOGGER.info(f"Received erronous response for request: {{"
+                        f"id: {correlation_id}, "
+                        f"code: {worker_response['status_code']}}}")
+            raise HTTPException(worker_response['status_code'], detail=worker_response['status'])
+
+        return worker_response['content'], correlation_id
 
 
 mq_connector = MQConnector()

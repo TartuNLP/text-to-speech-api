@@ -6,7 +6,7 @@ from app import api_settings, api_config
 
 
 class ErrorMessage(BaseModel):
-    message: str = Field(description="Human-readable error message.")
+    detail: str = Field(description="Human-readable error message.")
 
 
 class Request(BaseModel):
