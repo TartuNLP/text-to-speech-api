@@ -17,6 +17,7 @@ class APIConfig(BaseModel):
 class APISettings(BaseSettings):
     max_input_length: int = 10000
     config_path = "config/config.yaml"
+    version: Optional[str] = None
 
     class Config:
         env_file = 'config/.env'

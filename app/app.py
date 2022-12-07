@@ -5,13 +5,14 @@ from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.exceptions import RequestValidationError
 
-from . import mq_connector
+from . import api_settings, mq_connector
 from .tts import v2_router
 
 logger = logging.getLogger(__name__)
+logger.warning(api_settings)
 
 app = FastAPI(title="Text-to-Speech API",
-              version="2.1.0",
+              version=api_settings.version if api_settings.version else "dev",
               description="An API that provides text-to-speech using neural models. "
                           "Developed by TartuNLP - the NLP research group of the University of Tartu.",
               terms_of_service="https://www.tartunlp.ai/andmekaitsetingimused",

@@ -16,7 +16,7 @@ POST `/v2`
 
 BODY (JSON):
 
-```
+```json
 {
     "text": "Tere.",
     "speaker": "mari",
@@ -39,7 +39,7 @@ particular model can handle.
 
 The API can be deployed using the docker image published alongside the repository. Each image version correlates to
 a specific release. The API is designed to work together with our
-[text-to-speech worker](https://github.com/TartuNLP/text-to-speech-worker) worker containers and RabbitMQ.
+[text-to-speech worker](https://github.com/TartuNLP/text-to-speech-worker) containers and RabbitMQ.
 
 The service is available on port `8000`. By default, logging configuration is loaded from `config/logging.prod.ini` and
 service configuration from `config/config.yaml` files. The default versions of these files are included. To modify any

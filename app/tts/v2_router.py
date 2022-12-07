@@ -1,5 +1,3 @@
-from typing import Union
-
 import base64
 
 import logging

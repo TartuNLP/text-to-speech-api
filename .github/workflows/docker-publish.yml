@@ -24,6 +24,10 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Extract semver
+        id: get_version
+        uses: battila7/get-version-action@v2
+
       # Lowercase image name, as mixed case is not allowed while caching
       - name: lowercase IMAGE_NAME
         run: |
@@ -72,3 +76,5 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME_LOWER }}:latest
           cache-to: type=inline
+          build-args: |
+            API_VERSION=${{steps.get_version.outputs.version-without-v}}

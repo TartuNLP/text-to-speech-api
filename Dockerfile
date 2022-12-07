@@ -27,4 +27,4 @@ ENV API_VERSION=$API_VERSION
 
 EXPOSE 8000
 
-ENTRYPOINT ["uvicorn", "app:app", "--host", "0.0.0.0", "--proxy-headers", "--log-config", "config/logging.ini"]
+ENTRYPOINT ["uvicorn", "app:app", "--host", "0.0.0.0", "--proxy-headers", "--log-config", "config/logging.prod.ini"]
