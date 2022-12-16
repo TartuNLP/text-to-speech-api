@@ -45,9 +45,6 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # Extra
-            type=semver,pattern={{major}}.{{minor}}
-            type=semver,pattern={{major}}ct metadata (tags, labels) for Docker
       # https://github.com/docker/metadata-action
       - name: Extract Docker metadata
         id: meta
