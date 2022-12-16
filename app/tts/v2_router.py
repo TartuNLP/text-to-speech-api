@@ -28,8 +28,10 @@ async def get_config():
 @v2_router.post('', response_class=Response,
                 description="Submit a text-to-speech request.",
                 responses={
+                    200: {"content": {"audio/wav": {}}, "description": "Returns the synthesized audio."},
                     422: {"model": ErrorMessage},
-                    200: {"content": {"audio/wav": {}}, "description": "Returns the synthesized audio."}
+                    408: {"model": ErrorMessage},
+                    500: {"model": ErrorMessage}
                 })
 async def synthesis(body: Request):
     content, correlation_id = await mq_connector.publish_request(body, body.speaker)
@@ -44,7 +46,12 @@ async def synthesis(body: Request):
 
 @v2_router.post('/verbose', response_model=ResponseContent,
                 description="Submit a text-to-speech request and return only some information about the output.",
-                responses={422: {"model": ErrorMessage}, 200: {"model": ResponseContent}})
+                responses={
+                    200: {"content": {"audio/wav": {}}, "description": "Returns the synthesized audio."},
+                    422: {"model": ErrorMessage},
+                    408: {"model": ErrorMessage},
+                    500: {"model": ErrorMessage}
+                })
 async def synthesis_info(body: Request):
     content, correlation_id = await mq_connector.publish_request(body, body.speaker)
     return content

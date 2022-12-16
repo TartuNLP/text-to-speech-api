@@ -3,7 +3,7 @@
 An API based on FastAPI for using neural text-to-speech synthesis. The API is designed to be used together with our
 [text-to-speech workers](https://github.com/TartuNLP/text-to-speech-worker).
 
-The project is developed by the [NLP research group](https://tartunlp.ai) at the [Universty of Tartu](https://ut.ee).
+The project is developed by the [NLP research group](https://tartunlp.ai) at the [University of Tartu](https://ut.ee).
 Speech synthesis can also be tested in our [web demo](https://www.neurokone.ee/).
 
 ## API usage
@@ -32,7 +32,7 @@ in `.wav` format.
 
 The API forwards requests to various TTS engines using the RabbitMQ message broker. The communication uses a direct
 exchange named `text-to-speech` and a routing key of the request parameters using the format `text-to-speech.$speaker`.
-TTS workers estabilish queues within the exchange that are bound routing keys that illustrate which requests that the
+TTS workers establish queues within the exchange that are bound routing keys that illustrate which requests that the
 particular model can handle.
 
 ## Setup
@@ -60,7 +60,7 @@ The following environment variables should be specified when running the contain
 The entrypoint of the container
 is `["uvicorn", "app:app", "--host", "0.0.0.0", "--proxy-headers", "--log-config", "config/logging.ini"]`.
 
-The `CMD` option can be used to override flags in the entrypoint or to overridde
+The `CMD` option can be used to override flags in the entrypoint or to override
 different [Uvicorn parameters](https://www.uvicorn.org/deployment/). For example,
 `["--log-config", "config/logging.debug.ini", "--root-path", "/text-to-speech"]` enables debug logging and allows the API
 to be mounted under to the non-root path `/text-to-speech` when using a proxy server such as Nginx.

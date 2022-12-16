@@ -17,7 +17,7 @@ class Request(BaseModel):
     speaker: str = Field(...,
                          example="mari",
                          description="Name of speaker (not case-sensitive).")
-    speed: int = Field(default=1,
+    speed: float = Field(default=1,
                        description="Output audio speed multiplier.",
                        ge=0.5,
                        le=2)

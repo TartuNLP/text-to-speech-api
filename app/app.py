@@ -9,7 +9,6 @@ from . import api_settings, mq_connector
 from .tts import v2_router
 
 logger = logging.getLogger(__name__)
-logger.warning(api_settings)
 
 app = FastAPI(title="Text-to-Speech API",
               version=api_settings.version if api_settings.version else "dev",

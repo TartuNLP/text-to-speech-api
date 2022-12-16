@@ -15,7 +15,7 @@ LOGGER = logging.getLogger(__name__)
 
 
 def uuid4():
-    """Cryptographycally secure UUID generator."""
+    """Cryptographically secure UUID generator."""
     return uuid.UUID(bytes=os.urandom(16), version=4)
 
 
@@ -51,7 +51,7 @@ class MQConnector:
         if message.correlation_id in self.futures:
             body = json.loads(message.body.decode())
             if body['status_code'] != 200:
-                LOGGER.info(f"Received erronous response for request: {{"
+                LOGGER.info(f"Received erroneous response for request: {{"
                             f"id: {message.correlation_id}, "
                             f"code: {body['status_code']}}}")
             future = self.futures.pop(message.correlation_id, None)
@@ -102,7 +102,7 @@ class MQConnector:
             raise HTTPException(408)
 
         if worker_response['status_code'] != 200:
-            LOGGER.info(f"Received erronous response for request: {{"
+            LOGGER.info(f"Received erroneous response for request: {{"
                         f"id: {correlation_id}, "
                         f"code: {worker_response['status_code']}}}")
             raise HTTPException(worker_response['status_code'], detail=worker_response['status'])
