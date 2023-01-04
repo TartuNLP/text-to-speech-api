@@ -18,9 +18,9 @@ class Request(BaseModel):
                          example="mari",
                          description="Name of speaker (not case-sensitive).")
     speed: float = Field(default=1,
-                       description="Output audio speed multiplier.",
-                       ge=0.5,
-                       le=2)
+                         description="Output audio speed multiplier.",
+                         ge=0.5,
+                         le=2)
 
     def __init__(self, **data: Any):
         super(Request, self).__init__(**data)
