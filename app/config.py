@@ -2,7 +2,8 @@ from typing import List, Dict, Optional
 
 import yaml
 from yaml.loader import SafeLoader
-from pydantic import BaseSettings, BaseModel
+from pydantic import BaseModel
+from pydantic_settings import BaseSettings
 
 
 class Speaker(BaseModel):
@@ -11,12 +12,12 @@ class Speaker(BaseModel):
 
 class APIConfig(BaseModel):
     speakers: Dict[str, Speaker]
-    alt_names: Dict[str, str]
+    alt_names: Dict[str, str] = {}
 
 
 class APISettings(BaseSettings):
     max_input_length: int = 10000
-    config_path = "config/config.yaml"
+    config_path: str = "config/config.yaml"
     version: Optional[str] = None
 
     class Config:

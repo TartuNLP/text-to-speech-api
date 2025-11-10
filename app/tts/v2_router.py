@@ -53,5 +53,5 @@ async def synthesis(body: Request):
                     500: {"model": ErrorMessage}
                 })
 async def synthesis_info(body: Request):
-    content, correlation_id = await mq_connector.publish_request(body, body.speaker)
+    content, _ = await mq_connector.publish_request(body, body.speaker)
     return content
