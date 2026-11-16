@@ -4,3 +4,7 @@ config/*.env
 .gitignore
 .github
 *.iml
+.vscode/
+__pycache__/
+*.pyc
+.DS_Store

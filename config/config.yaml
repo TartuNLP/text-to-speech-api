@@ -19,5 +19,12 @@ speakers:
     languages: [est]
   vesta:
     languages: [est]
+  sulev:
+    languages: [vro]
+  hella:
+    languages: [vro]
 alt_names:
   külli: kylli
+  sullov: sulev
+  sullõv: sulev
+  hellä: hella

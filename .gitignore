@@ -3,3 +3,7 @@ __pycache__/
 config/.env
 *.iml
 config/config.*.yaml
+.vscode/
+__pycache__/
+*.pyc
+.DS_Store
